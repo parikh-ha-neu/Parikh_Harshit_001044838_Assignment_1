@@ -12,7 +12,7 @@ package model;
 public class product {
     public String name;
     public String geo_data;
-//    public String date_of_birth;
+    public String date_of_birth;
     public String telephone_number;
     public String fax_number;
     public String email_address;
@@ -32,6 +32,14 @@ public class product {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public String getDate_of_birth() {
+        return date_of_birth;
+    }
+
+    public void setDate_of_birth(String date_of_birth) {
+        this.date_of_birth = date_of_birth;
     }
 
     public String getGeo_data() {
