@@ -5,6 +5,7 @@
  */
 package ui;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import model.Profile;
 
@@ -136,6 +137,11 @@ public class CreateJPanel extends javax.swing.JPanel {
         txtTelephoneNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelephoneNumberActionPerformed(evt);
+            }
+        });
+        txtTelephoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTelephoneNumberKeyReleased(evt);
             }
         });
 
@@ -332,7 +338,8 @@ public class CreateJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtDOBActionPerformed
 
     private void txtTelephoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelephoneNumberActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
+        
     }//GEN-LAST:event_txtTelephoneNumberActionPerformed
 
     private void txtFaxNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFaxNumberActionPerformed
@@ -381,7 +388,6 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        
         profile.setName(txtName.getText());
         profile.setAddress(txtAddress.getText());
         profile.setDate_of_birth(txtDOB.getText());
@@ -396,11 +402,26 @@ public class CreateJPanel extends javax.swing.JPanel {
         profile.setDevice_identifier(txtDeviceIdentifier.getText());
         profile.setLinkedin(txtLinkedin.getText());
         profile.setIp_address(txtIPAddress.getText());
+        
+        
        
        
         JOptionPane.showMessageDialog(this, "Profile Saved Successfully!");
         
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtTelephoneNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelephoneNumberKeyReleased
+        // TODO add your handling code here:
+        String telephoneNumber = txtTelephoneNumber.getText();
+        System.out.println("tele");
+        if(telephoneNumber.matches("^[0-9]*$") && telephoneNumber.length() == 10)
+        {
+            txtTelephoneNumber.setBackground(Color.green);
+        }
+        else
+            txtTelephoneNumber.setBackground(Color.red);
+            
+    }//GEN-LAST:event_txtTelephoneNumberKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
