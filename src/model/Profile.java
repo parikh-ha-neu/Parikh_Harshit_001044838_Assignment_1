@@ -11,14 +11,13 @@ package model;
  */
 public class Profile {
     public String name;
-    public String geo_data;
+    public String address;
     public String date_of_birth;
     public String telephone_number;
     public String fax_number;
     public String email_address;
     public String ssn;
     public String medical_record_number;
-    public String health_plan_number;
     public String bank_account_number;
     public String license_number;
     public String vehicle_identifier_number;
@@ -42,12 +41,12 @@ public class Profile {
         this.date_of_birth = date_of_birth;
     }
 
-    public String getGeo_data() {
-        return geo_data;
+    public String getAddress() {
+        return address;
     }
 
-    public void setGeo_data(String geo_data) {
-        this.geo_data = geo_data;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getTelephone_number() {
@@ -88,14 +87,6 @@ public class Profile {
 
     public void setMedical_record_number(String medical_record_number) {
         this.medical_record_number = medical_record_number;
-    }
-
-    public String getHealth_plan_number() {
-        return health_plan_number;
-    }
-
-    public void setHealth_plan_number(String health_plan_number) {
-        this.health_plan_number = health_plan_number;
     }
 
     public String getBank_account_number() {

@@ -5,6 +5,7 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
 import model.Profile;
 
 /**
@@ -381,7 +382,23 @@ public class CreateJPanel extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         
-        profile.setName(txtName);
+        profile.setName(txtName.getText());
+        profile.setAddress(txtAddress.getText());
+        profile.setDate_of_birth(txtDOB.getText());
+        profile.setTelephone_number(txtTelephoneNumber.getText());
+        profile.setFax_number(txtFaxNumber.getText());
+        profile.setEmail_address(txtEmailAddress.getText());
+        profile.setSsn(txtSSN.getText());
+        profile.setMedical_record_number(txtMedicalRecordNumber.getText());
+        profile.setBank_account_number(txtBankAccountNumber.getText());
+        profile.setLicense_number(txtLicenseNumber.getText());
+        profile.setVehicle_identifier_number(txtVehicleIdentifierNumber.getText());
+        profile.setDevice_identifier(txtDeviceIdentifier.getText());
+        profile.setLinkedin(txtLinkedin.getText());
+        profile.setIp_address(txtIPAddress.getText());
+       
+       
+        JOptionPane.showMessageDialog(this, "Profile Saved Successfully!");
         
     }//GEN-LAST:event_btnSaveActionPerformed
 
