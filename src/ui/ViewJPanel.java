@@ -22,6 +22,8 @@ public class ViewJPanel extends javax.swing.JPanel {
         initComponents();
         
         this.profile = profile;
+        displayProfile();
+        
     }
 
     /**
@@ -408,4 +410,23 @@ public class ViewJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtTelephoneNumber;
     private javax.swing.JTextField txtVehicleIdentifierNumber;
     // End of variables declaration//GEN-END:variables
+
+    private void displayProfile() {
+        
+        txtName.setText(profile.getName());
+        txtAddress.setText(profile.getAddress());
+        txtDOB.setText(profile.getDate_of_birth());
+        txtTelephoneNumber.setText(profile.getTelephone_number());
+        txtFaxNumber.setText(profile.getFax_number());
+        txtEmailAddress.setText(profile.getEmail_address());
+        txtSSN.setText(profile.getSsn());
+        txtMedicalRecordNumber.setText(profile.getMedical_record_number());
+        txtBankAccountNumber.setText(profile.getBank_account_number());
+        txtLicenseNumber.setText(profile.getLicense_number());      
+        txtVehicleIdentifierNumber.setText(profile.getVehicle_identifier_number());
+        txtDeviceIdentifier.setText(profile.getDevice_identifier());
+        txtLinkedin.setText(profile.getLinkedin());
+        txtIPAddress.setText(profile.getIp_address());
+    
+    }
 }
