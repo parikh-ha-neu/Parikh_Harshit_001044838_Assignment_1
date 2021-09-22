@@ -9,7 +9,7 @@ package model;
  *
  * @author Harshit
  */
-public class product {
+public class Profile {
     public String name;
     public String geo_data;
     public String date_of_birth;
