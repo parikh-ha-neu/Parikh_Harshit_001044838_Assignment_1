@@ -16,12 +16,16 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="437" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="536" max="32767" attributes="0"/>
+              <Component id="lblViewPhoto" min="-2" pref="278" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+          </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lb1Title" alignment="1" max="32767" attributes="0"/>
+                      <Component id="lb1Title" alignment="1" pref="829" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -50,7 +54,6 @@
                                       <Component id="lblDeviceIdentifier" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblLinkedin" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblIPAddress" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblPhoto" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -69,7 +72,6 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -79,7 +81,11 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="446" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+              <Component id="lblViewPhoto" min="-2" pref="180" max="-2" attributes="0"/>
+              <EmptySpace pref="213" max="32767" attributes="0"/>
+          </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
@@ -154,9 +160,7 @@
                       <Component id="lblIPAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtIPAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblPhoto" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="34" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -201,14 +205,6 @@
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="IP Address:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblPhoto">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Upload Photo:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtName">
@@ -361,6 +357,8 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Bank Account Number:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblViewPhoto">
     </Component>
   </SubComponents>
 </Form>

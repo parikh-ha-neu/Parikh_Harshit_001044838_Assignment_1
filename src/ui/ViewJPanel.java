@@ -5,6 +5,8 @@
  */
 package ui;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import model.Profile;
 
 /**
@@ -40,7 +42,6 @@ public class ViewJPanel extends javax.swing.JPanel {
         lblDeviceIdentifier = new javax.swing.JLabel();
         lblLinkedin = new javax.swing.JLabel();
         lblIPAddress = new javax.swing.JLabel();
-        lblPhoto = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         txtAddress = new javax.swing.JTextField();
         txtDOB = new javax.swing.JTextField();
@@ -65,6 +66,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         txtIPAddress = new javax.swing.JTextField();
         lblMedicalRecordNumber = new javax.swing.JLabel();
         lblBankAccountNumber = new javax.swing.JLabel();
+        lblViewPhoto = new javax.swing.JLabel();
 
         lblLicenseNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblLicenseNumber.setText("License Number:");
@@ -80,9 +82,6 @@ public class ViewJPanel extends javax.swing.JPanel {
 
         lblIPAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblIPAddress.setText("IP Address:");
-
-        lblPhoto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblPhoto.setText("Upload Photo:");
 
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,12 +202,15 @@ public class ViewJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 437, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(536, Short.MAX_VALUE)
+                .addComponent(lblViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lb1Title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lb1Title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(76, 76, 76)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,8 +235,7 @@ public class ViewJPanel extends javax.swing.JPanel {
                                         .addComponent(lblVehicleIdentifierNumber)
                                         .addComponent(lblDeviceIdentifier)
                                         .addComponent(lblLinkedin)
-                                        .addComponent(lblIPAddress)
-                                        .addComponent(lblPhoto))
+                                        .addComponent(lblIPAddress))
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtIPAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,13 +249,15 @@ public class ViewJPanel extends javax.swing.JPanel {
                                         .addComponent(txtEmailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtFaxNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtTelephoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 446, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(lblViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(213, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -315,9 +318,7 @@ public class ViewJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblIPAddress)
                         .addComponent(txtIPAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(lblPhoto)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(34, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -391,10 +392,10 @@ public class ViewJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblLinkedin;
     private javax.swing.JLabel lblMedicalRecordNumber;
     private javax.swing.JLabel lblName;
-    private javax.swing.JLabel lblPhoto;
     private javax.swing.JLabel lblSSN;
     private javax.swing.JLabel lblTelephoneNumber;
     private javax.swing.JLabel lblVehicleIdentifierNumber;
+    private javax.swing.JLabel lblViewPhoto;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtBankAccountNumber;
     private javax.swing.JTextField txtDOB;
@@ -413,9 +414,13 @@ public class ViewJPanel extends javax.swing.JPanel {
 
     private void displayProfile() {
         
+        String pattern = "MMM dd, yyyy";
+        DateFormat df = new SimpleDateFormat(pattern);
+        String date_string = df.format(profile.getDate_of_birth());
+        
         txtName.setText(profile.getName());
         txtAddress.setText(profile.getAddress());
-        txtDOB.setText(profile.getDate_of_birth());
+        txtDOB.setText(date_string);
         txtTelephoneNumber.setText(profile.getTelephone_number());
         txtFaxNumber.setText(profile.getFax_number());
         txtEmailAddress.setText(profile.getEmail_address());

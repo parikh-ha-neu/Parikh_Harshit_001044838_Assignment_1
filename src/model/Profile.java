@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author Harshit
@@ -12,7 +14,7 @@ package model;
 public class Profile {
     public String name;
     public String address;
-    public String date_of_birth;
+    Date date_of_birth = new Date();
     public String telephone_number;
     public String fax_number;
     public String email_address;
@@ -33,11 +35,11 @@ public class Profile {
         this.name = name;
     }
     
-    public String getDate_of_birth() {
+    public Date getDate_of_birth() {
         return date_of_birth;
     }
 
-    public void setDate_of_birth(String date_of_birth) {
+    public void setDate_of_birth(Date date_of_birth) {
         this.date_of_birth = date_of_birth;
     }
 
