@@ -26,6 +26,15 @@ public class Profile {
     public String device_identifier;
     public String linkedin;
     public String ip_address;
+    public String photo;
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
     public String getName() {
         return name;

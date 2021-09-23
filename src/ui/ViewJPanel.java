@@ -5,8 +5,11 @@
  */
 package ui;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import javax.swing.ImageIcon;
 import model.Profile;
 
 /**
@@ -203,9 +206,9 @@ public class ViewJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(536, Short.MAX_VALUE)
-                .addComponent(lblViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addContainerGap(511, Short.MAX_VALUE)
+                .addComponent(lblViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -256,8 +259,8 @@ public class ViewJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(53, 53, 53)
-                .addComponent(lblViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addComponent(lblViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(230, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -432,6 +435,15 @@ public class ViewJPanel extends javax.swing.JPanel {
         txtDeviceIdentifier.setText(profile.getDevice_identifier());
         txtLinkedin.setText(profile.getLinkedin());
         txtIPAddress.setText(profile.getIp_address());
+        
+        String filename = profile.getPhoto();
+        System.out.println(filename);
+        
+        Image im = Toolkit.getDefaultToolkit().createImage(filename);
+        im = im.getScaledInstance(1200, 640, Image.SCALE_SMOOTH);
+        ImageIcon ii = new ImageIcon(im);
+        lblViewPhoto.setIcon(ii);
+        
     
     }
 }
