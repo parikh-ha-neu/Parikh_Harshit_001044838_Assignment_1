@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
+import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -30,7 +31,23 @@ public class CreateJPanel extends javax.swing.JPanel {
     
     Profile profile;
     
-    public boolean isSubmit = true;
+    public boolean isSubmit = true;    
+    public boolean isSubmit_Name = false;
+    public boolean isSubmit_Address = false;
+    public boolean isSubmit_DOB = false;
+    public boolean isSubmit_telephoneNumber = false;
+    public boolean isSubmit_FaxNumber = false;
+    public boolean isSubmit_EmailAddress = false;
+    public boolean isSubmit_SSN = false;
+    public boolean isSubmit_MedicalRecordNumber = false;
+    public boolean isSubmit_BankAccountNumber = false;
+    public boolean isSubmit_LinkedinURL = false;
+    public boolean isSubmit_IPAddress = false;
+    public boolean isSubmit_Photo = false;
+    
+    
+    
+    
     
     public CreateJPanel(Profile profile) {
         initComponents();
@@ -135,6 +152,11 @@ public class CreateJPanel extends javax.swing.JPanel {
                 txtNameActionPerformed(evt);
             }
         });
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNameKeyReleased(evt);
+            }
+        });
 
         txtAddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,11 +176,6 @@ public class CreateJPanel extends javax.swing.JPanel {
         });
 
         txtFaxNumber.setToolTipText("Optional");
-        txtFaxNumber.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtFaxNumberFocusGained(evt);
-            }
-        });
         txtFaxNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFaxNumberActionPerformed(evt);
@@ -209,6 +226,8 @@ public class CreateJPanel extends javax.swing.JPanel {
             }
         });
 
+        txtLicenseNumber.setForeground(new java.awt.Color(153, 153, 153));
+        txtLicenseNumber.setText("Optional");
         txtLicenseNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLicenseNumberActionPerformed(evt);
@@ -220,12 +239,16 @@ public class CreateJPanel extends javax.swing.JPanel {
             }
         });
 
+        txtVehicleIdentifierNumber.setForeground(new java.awt.Color(153, 153, 153));
+        txtVehicleIdentifierNumber.setText("Optional");
         txtVehicleIdentifierNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtVehicleIdentifierNumberActionPerformed(evt);
             }
         });
 
+        txtDeviceIdentifier.setForeground(new java.awt.Color(153, 153, 153));
+        txtDeviceIdentifier.setText("Optional");
         txtDeviceIdentifier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDeviceIdentifierActionPerformed(evt);
@@ -453,11 +476,56 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:    
-        
-        if(this.isSubmit == true){   
+
+        if(this.isSubmit_Name == false ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid name.");
+        }
+        else if(this.isSubmit_Address == false ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid address.");
+        }
+        else if(this.isSubmit_DOB == false ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid date of birth.");
+        }        
+        else if(this.isSubmit_telephoneNumber == false ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid telephone number.");
+        }
+        else if(this.isSubmit_FaxNumber == false ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid fax number.");
+        }
+        else if(this.isSubmit_EmailAddress == false ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid email address.");
+        }
+        else if(this.isSubmit_SSN == false ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid social security number.");
+        }
+        else if(this.isSubmit_MedicalRecordNumber == false ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid medical record number.");
+        }
+        else if(this.isSubmit_BankAccountNumber == false ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid bank account number.");
+        }
+        else if(this.isSubmit_LinkedinURL == false ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid linkedin URL.");
+        }
+        else if(this.isSubmit_IPAddress == false ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid IP Address.");
+        }
+        else if(this.isSubmit_Photo == false ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid photo.");
+        }
+        else{   
             profile.setName(txtName.getText());
+            
             profile.setAddress(txtAddress.getText());
-            profile.setDate_of_birth(txtDOB.getDate());
+            
+            Date date_today = new Date();
+            if (txtDOB.getDate() == null){
+                profile.setDate_of_birth(date_today);
+            }
+            else{                
+                profile.setDate_of_birth(txtDOB.getDate());
+            }
+            
             profile.setTelephone_number(txtTelephoneNumber.getText());
             profile.setFax_number(txtFaxNumber.getText());
             profile.setEmail_address(txtEmailAddress.getText());
@@ -470,14 +538,8 @@ public class CreateJPanel extends javax.swing.JPanel {
             profile.setLinkedin(txtLinkedin.getText());
             profile.setIp_address(txtIPAddress.getText());
             profile.setPhoto(txtFilePath.getText());
-            JOptionPane.showMessageDialog(this, "Profile Saved Successfully!");   
-        }
-        else
-            JOptionPane.showMessageDialog(this, "Please solve all the errors and try again.");
-        
-        
-       
-       
+            JOptionPane.showMessageDialog(this, "Profile Saved Successfully!");
+        }        
         
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -487,17 +549,13 @@ public class CreateJPanel extends javax.swing.JPanel {
         if(telephoneNumber.matches("^[0-9]*$") && telephoneNumber.length() == 10)
         {
             txtTelephoneNumber.setBackground(Color.green);
-            this.isSubmit = true;
+            this.isSubmit_telephoneNumber = true;
         }
-        else
+        else{
             txtTelephoneNumber.setBackground(Color.red);
-            this.isSubmit = false;
-            
+            this.isSubmit_telephoneNumber = false;
+        }
     }//GEN-LAST:event_txtTelephoneNumberKeyReleased
-
-    private void txtFaxNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFaxNumberFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFaxNumberFocusGained
 
     private void txtFaxNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFaxNumberKeyReleased
         // TODO add your handling code here:
@@ -505,11 +563,12 @@ public class CreateJPanel extends javax.swing.JPanel {
         if(faxNumber.matches("^[0-9]*$") && faxNumber.length() == 9)
         {
             txtFaxNumber.setBackground(Color.green);
-            this.isSubmit = true;
+            this.isSubmit_FaxNumber = true;
         }
-        else
+        else{
             txtFaxNumber.setBackground(Color.red);
-            this.isSubmit = false;
+            this.isSubmit_FaxNumber = false;
+        }
     }//GEN-LAST:event_txtFaxNumberKeyReleased
 
     private void txtSSNKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSSNKeyReleased
@@ -518,11 +577,11 @@ public class CreateJPanel extends javax.swing.JPanel {
         if(ssnNumber.matches("^[0-9]*$") && ssnNumber.length() == 9)
         {
             txtSSN.setBackground(Color.green);
-            this.isSubmit = true;
+            this.isSubmit_SSN = true;
         }
         else
             txtSSN.setBackground(Color.red);
-            this.isSubmit = false;
+            this.isSubmit_SSN = false;
         
     }//GEN-LAST:event_txtSSNKeyReleased
 
@@ -532,11 +591,11 @@ public class CreateJPanel extends javax.swing.JPanel {
         if(medicalRecordNumber.matches("^[0-9]*$"))
         {
             txtMedicalRecordNumber.setBackground(Color.green);
-            this.isSubmit = true;
+            this.isSubmit_MedicalRecordNumber = true;
         }
         else
             txtMedicalRecordNumber.setBackground(Color.red);
-            this.isSubmit = false;
+            this.isSubmit_MedicalRecordNumber = false;
     }//GEN-LAST:event_txtMedicalRecordNumberKeyReleased
 
     private void txtBankAccountNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBankAccountNumberKeyReleased
@@ -594,6 +653,22 @@ public class CreateJPanel extends javax.swing.JPanel {
         
         
     }//GEN-LAST:event_btnAttachActionPerformed
+
+    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
+        // TODO add your handling code here:
+        String Name = txtName.getText();
+        txtName.setBackground(Color.red);
+        if(Name.isEmpty())
+        {
+            txtName.setBackground(Color.red);
+            this.isSubmit_Name = false;
+        }
+        else{
+            txtName.setBackground(Color.green);
+            this.isSubmit_Name = true;
+        }
+        
+    }//GEN-LAST:event_txtNameKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
