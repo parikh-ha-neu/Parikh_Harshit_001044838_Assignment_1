@@ -9,12 +9,6 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
@@ -38,7 +32,6 @@ public class CreateJPanel extends javax.swing.JPanel {
     
     Profile profile;
     
-    public boolean isSubmit = true;    
     public boolean isSubmit_Name = false;
     public boolean isSubmit_Address = false;
     public boolean isSubmit_DOB = false;
@@ -111,7 +104,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         lb1Title.setText("CREATE PROFILE");
 
         lblName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblName.setText("Name:");
+        lblName.setText("Full Name:");
 
         lblAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblAddress.setText("Address:");
@@ -335,30 +328,24 @@ public class CreateJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDateOfBirth)
+                    .addComponent(lblTelephoneNumber)
+                    .addComponent(lblFaxNumber)
+                    .addComponent(lblEmailAddress)
+                    .addComponent(lblSSN)
+                    .addComponent(lblMedicalRecordNumber)
+                    .addComponent(lblBankAccountNumber)
+                    .addComponent(lblLicenseNumber)
+                    .addComponent(lblVehicleIdentifierNumber)
+                    .addComponent(lblDeviceIdentifier)
+                    .addComponent(lblLinkedin)
+                    .addComponent(lblIPAddress)
+                    .addComponent(lblPhoto)
+                    .addComponent(lblName)
+                    .addComponent(lblAddress))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblName)
-                            .addComponent(lblAddress))
-                        .addGap(134, 134, 134)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDateOfBirth)
-                            .addComponent(lblTelephoneNumber)
-                            .addComponent(lblFaxNumber)
-                            .addComponent(lblEmailAddress)
-                            .addComponent(lblSSN)
-                            .addComponent(lblMedicalRecordNumber)
-                            .addComponent(lblBankAccountNumber)
-                            .addComponent(lblLicenseNumber)
-                            .addComponent(lblVehicleIdentifierNumber)
-                            .addComponent(lblDeviceIdentifier)
-                            .addComponent(lblLinkedin)
-                            .addComponent(lblIPAddress)
-                            .addComponent(lblPhoto))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtIPAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                             .addComponent(txtLinkedin, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
@@ -378,18 +365,20 @@ public class CreateJPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtFilePath, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addComponent(txtViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(107, Short.MAX_VALUE))
+                        .addComponent(txtViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lb1Title, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtName)
-                    .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -627,12 +616,12 @@ public class CreateJPanel extends javax.swing.JPanel {
         if(ssnNumber.matches("^[0-9]*$") && ssnNumber.length() == 9)
         {
             txtSSN.setBackground(Color.green);
-            this.isSubmit_SSN = true;
+            isSubmit_SSN = true;
         }
-        else
+        else{
             txtSSN.setBackground(Color.red);
-            this.isSubmit_SSN = false;
-        
+            isSubmit_SSN = false;
+        }
     }//GEN-LAST:event_txtSSNKeyReleased
 
     private void txtMedicalRecordNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMedicalRecordNumberKeyReleased
@@ -643,22 +632,24 @@ public class CreateJPanel extends javax.swing.JPanel {
             txtMedicalRecordNumber.setBackground(Color.green);
             this.isSubmit_MedicalRecordNumber = true;
         }
-        else
+        else{
             txtMedicalRecordNumber.setBackground(Color.red);
             this.isSubmit_MedicalRecordNumber = false;
+        }
     }//GEN-LAST:event_txtMedicalRecordNumberKeyReleased
 
     private void txtBankAccountNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBankAccountNumberKeyReleased
         // TODO add your handling code here:
         String bankAccountNumber = txtBankAccountNumber.getText();
-        if(bankAccountNumber.matches("^[0-9]*$"))
+        if(bankAccountNumber.matches("^[0-9]*$") && bankAccountNumber.length() >= 10 && bankAccountNumber.length() <= 20)
         {
             txtBankAccountNumber.setBackground(Color.green);
             this.isSubmit_BankAccountNumber = true;
         }
-        else
+        else{
             txtBankAccountNumber.setBackground(Color.red);
             this.isSubmit_BankAccountNumber = false;
+        }
     }//GEN-LAST:event_txtBankAccountNumberKeyReleased
 
     private void txtLicenseNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLicenseNumberKeyReleased
@@ -669,14 +660,31 @@ public class CreateJPanel extends javax.swing.JPanel {
             txtLicenseNumber.setBackground(Color.green);
             this.isSubmit_LicenseNumber = true;
         }
-        else
+        else{
             txtLicenseNumber.setBackground(Color.red);
             this.isSubmit_LicenseNumber = false;
-        
+        }
     }//GEN-LAST:event_txtLicenseNumberKeyReleased
 
     private void txtIPAddressKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIPAddressKeyReleased
         // TODO add your handling code here:
+        String IPAddress = txtIPAddress.getText();        
+        String IPV4_REGEX =
+                    "^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\." +
+                    "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\." +
+                    "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\." +
+                    "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
+        Pattern IPv4_PATTERN = Pattern.compile(IPV4_REGEX);
+        Matcher matcher = IPv4_PATTERN.matcher(IPAddress);
+        if (matcher.matches()) {
+            txtIPAddress.setBackground(Color.green);
+            this.isSubmit_IPAddress = true;
+        }
+        else {
+            txtIPAddress.setBackground(Color.red);
+            this.isSubmit_IPAddress = false;
+        }
+        
         
         
     }//GEN-LAST:event_txtIPAddressKeyReleased
@@ -708,15 +716,16 @@ public class CreateJPanel extends javax.swing.JPanel {
     private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
         // TODO add your handling code here:
         String Name = txtName.getText();
-        txtName.setBackground(Color.red);
-        if(Name.isEmpty())
+        String nameRegex = "^([a-zA-Z]{2,}\\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)";
+        Pattern pattern = Pattern.compile(nameRegex);
+        if(pattern.matcher(Name).matches())
         {
-            txtName.setBackground(Color.red);
-            this.isSubmit_Name = false;
-        }
-        else{
             txtName.setBackground(Color.green);
             this.isSubmit_Name = true;
+        }
+        else{
+            txtName.setBackground(Color.red);
+            this.isSubmit_Name = false;
         }
         
     }//GEN-LAST:event_txtNameKeyReleased
@@ -725,7 +734,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(txtVehicleIdentifierNumber.getText().equals("Optional")){
             txtVehicleIdentifierNumber.setText("");
-            txtVehicleIdentifierNumber.setForeground(new Color(153,153,153));
+            txtVehicleIdentifierNumber.setForeground(new Color(0,0,0));
         }
         
     }//GEN-LAST:event_txtVehicleIdentifierNumberFocusGained
@@ -734,22 +743,24 @@ public class CreateJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(txtDeviceIdentifier.getText().equals("Optional")){
             txtDeviceIdentifier.setText("");
-            txtDeviceIdentifier.setForeground(new Color(153,153,153));
+            txtDeviceIdentifier.setForeground(new Color(0,0,0));
         }
     }//GEN-LAST:event_txtDeviceIdentifierFocusGained
 
     private void txtAddressKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAddressKeyReleased
         // TODO add your handling code here:
         String Address = txtAddress.getText();
+        String removed_whitespace_address = Address.replaceAll(" ", "");
+        String addressRegex = "^[a-zA-Z0-9\\s,'-]*$";
+        Pattern pattern = Pattern.compile(addressRegex);
         txtAddress.setBackground(Color.red);
-        if(Address.isEmpty())
-        {
-            txtAddress.setBackground(Color.red);
-            this.isSubmit_Address = false;
-        }
-        else{
+        if(pattern.matcher(Address).matches() && removed_whitespace_address.length() >= 4){
             txtAddress.setBackground(Color.green);
             this.isSubmit_Address = true;
+        }
+        else{
+            txtAddress.setBackground(Color.red);
+            this.isSubmit_Address = false;
         }
         
     }//GEN-LAST:event_txtAddressKeyReleased
@@ -789,12 +800,12 @@ public class CreateJPanel extends javax.swing.JPanel {
     private void txtLinkedinKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLinkedinKeyReleased
         // TODO add your handling code here:
         String LinkedinURL = txtLinkedin.getText();
-        
-        try {
-            new URL(LinkedinURL).toURI();
+        String linkedinRegex = "((https?:\\/\\/)?((www|\\w\\w)\\.)?linkedin\\.com\\/)((([\\w]{2,3})?)|([^\\/]+\\/(([\\w|\\d-&#?=])+\\/?){1,}))$";
+        Pattern pattern = Pattern.compile(linkedinRegex);
+        if(pattern.matcher(LinkedinURL).matches()){
             txtLinkedin.setBackground(Color.green);
             this.isSubmit_LinkedinURL = true;
-        } catch (MalformedURLException | URISyntaxException ex) {
+        } else{
             txtLinkedin.setBackground(Color.red);
             this.isSubmit_LinkedinURL = false;  
         }

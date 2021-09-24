@@ -20,34 +20,25 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblName" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAddress" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="134" pref="134" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtName" min="-2" pref="147" max="-2" attributes="0"/>
-                          <Component id="txtAddress" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblDateOfBirth" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblTelephoneNumber" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblFaxNumber" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblEmailAddress" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblSSN" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMedicalRecordNumber" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblBankAccountNumber" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblLicenseNumber" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblVehicleIdentifierNumber" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblDeviceIdentifier" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblLinkedin" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblIPAddress" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblPhoto" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="lblDateOfBirth" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTelephoneNumber" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblFaxNumber" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblEmailAddress" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblSSN" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblMedicalRecordNumber" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblBankAccountNumber" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblLicenseNumber" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblVehicleIdentifierNumber" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDeviceIdentifier" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblLinkedin" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblIPAddress" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPhoto" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblName" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAddress" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtIPAddress" pref="147" max="32767" attributes="0"/>
                           <Component id="txtLinkedin" pref="147" max="32767" attributes="0"/>
@@ -71,8 +62,10 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="txtViewPhoto" min="-2" pref="292" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="txtAddress" min="-2" pref="147" max="-2" attributes="0"/>
+                  <Component id="txtName" min="-2" pref="147" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="107" max="32767" attributes="0"/>
+              <EmptySpace pref="161" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,10 +74,10 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lb1Title" min="-2" pref="32" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="txtName" max="32767" attributes="0"/>
-                  <Component id="lblName" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="lblName" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="txtName" min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -191,7 +184,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Name:"/>
+        <Property name="text" type="java.lang.String" value="Full Name:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblAddress">
