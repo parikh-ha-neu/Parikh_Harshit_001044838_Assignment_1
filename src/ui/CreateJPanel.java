@@ -9,7 +9,14 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -41,6 +48,7 @@ public class CreateJPanel extends javax.swing.JPanel {
     public boolean isSubmit_SSN = false;
     public boolean isSubmit_MedicalRecordNumber = false;
     public boolean isSubmit_BankAccountNumber = false;
+    public boolean isSubmit_LicenseNumber = false;
     public boolean isSubmit_LinkedinURL = false;
     public boolean isSubmit_IPAddress = false;
     public boolean isSubmit_Photo = false;
@@ -163,6 +171,11 @@ public class CreateJPanel extends javax.swing.JPanel {
                 txtAddressActionPerformed(evt);
             }
         });
+        txtAddress.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtAddressKeyReleased(evt);
+            }
+        });
 
         txtTelephoneNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +203,11 @@ public class CreateJPanel extends javax.swing.JPanel {
         txtEmailAddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailAddressActionPerformed(evt);
+            }
+        });
+        txtEmailAddress.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmailAddressKeyReleased(evt);
             }
         });
 
@@ -226,8 +244,6 @@ public class CreateJPanel extends javax.swing.JPanel {
             }
         });
 
-        txtLicenseNumber.setForeground(new java.awt.Color(153, 153, 153));
-        txtLicenseNumber.setText("Optional");
         txtLicenseNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLicenseNumberActionPerformed(evt);
@@ -241,6 +257,14 @@ public class CreateJPanel extends javax.swing.JPanel {
 
         txtVehicleIdentifierNumber.setForeground(new java.awt.Color(153, 153, 153));
         txtVehicleIdentifierNumber.setText("Optional");
+        txtVehicleIdentifierNumber.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtVehicleIdentifierNumberFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtVehicleIdentifierNumberFocusLost(evt);
+            }
+        });
         txtVehicleIdentifierNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtVehicleIdentifierNumberActionPerformed(evt);
@@ -249,6 +273,14 @@ public class CreateJPanel extends javax.swing.JPanel {
 
         txtDeviceIdentifier.setForeground(new java.awt.Color(153, 153, 153));
         txtDeviceIdentifier.setText("Optional");
+        txtDeviceIdentifier.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDeviceIdentifierFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDeviceIdentifierFocusLost(evt);
+            }
+        });
         txtDeviceIdentifier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDeviceIdentifierActionPerformed(evt);
@@ -258,6 +290,11 @@ public class CreateJPanel extends javax.swing.JPanel {
         txtLinkedin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLinkedinActionPerformed(evt);
+            }
+        });
+        txtLinkedin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtLinkedinKeyReleased(evt);
             }
         });
 
@@ -350,23 +387,24 @@ public class CreateJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(lb1Title, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblName)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtName)
+                    .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAddress)
-                    .addComponent(txtAddress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDateOfBirth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblDateOfBirth)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTelephoneNumber)
-                                    .addComponent(txtTelephoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(9, 9, 9)
+                                .addComponent(lblTelephoneNumber)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblFaxNumber)
@@ -391,33 +429,34 @@ public class CreateJPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblLicenseNumber)
                                     .addComponent(txtLicenseNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(txtViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblVehicleIdentifierNumber)
-                            .addComponent(txtVehicleIdentifierNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblDeviceIdentifier)
-                            .addComponent(txtDeviceIdentifier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblLinkedin)
-                            .addComponent(txtLinkedin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblIPAddress)
-                            .addComponent(txtIPAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPhoto)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnAttach, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtFilePath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSave))
-                    .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtTelephoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblVehicleIdentifierNumber)
+                    .addComponent(txtVehicleIdentifierNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDeviceIdentifier)
+                    .addComponent(txtDeviceIdentifier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLinkedin)
+                    .addComponent(txtLinkedin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblIPAddress)
+                    .addComponent(txtIPAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPhoto)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAttach, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFilePath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSave)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -483,7 +522,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         else if(this.isSubmit_Address == false ){
             JOptionPane.showMessageDialog(this, "Please enter a valid address.");
         }
-        else if(this.isSubmit_DOB == false ){
+        else if(txtDOB.getDate() == null){
             JOptionPane.showMessageDialog(this, "Please enter a valid date of birth.");
         }        
         else if(this.isSubmit_telephoneNumber == false ){
@@ -515,17 +554,14 @@ public class CreateJPanel extends javax.swing.JPanel {
         }
         else{   
             profile.setName(txtName.getText());
-            
             profile.setAddress(txtAddress.getText());
-            
-            Date date_today = new Date();
-            if (txtDOB.getDate() == null){
-                profile.setDate_of_birth(date_today);
-            }
-            else{                
-                profile.setDate_of_birth(txtDOB.getDate());
-            }
-            
+//            Date date_today = new Date();
+//            if (txtDOB.getDate() == null){
+//                profile.setDate_of_birth(date_today);
+//            }
+//            else{                
+            profile.setDate_of_birth(txtDOB.getDate());
+//            }
             profile.setTelephone_number(txtTelephoneNumber.getText());
             profile.setFax_number(txtFaxNumber.getText());
             profile.setEmail_address(txtEmailAddress.getText());
@@ -533,11 +569,25 @@ public class CreateJPanel extends javax.swing.JPanel {
             profile.setMedical_record_number(txtMedicalRecordNumber.getText());
             profile.setBank_account_number(txtBankAccountNumber.getText());
             profile.setLicense_number(txtLicenseNumber.getText());
-            profile.setVehicle_identifier_number(txtVehicleIdentifierNumber.getText());
-            profile.setDevice_identifier(txtDeviceIdentifier.getText());
+            
+            if(txtVehicleIdentifierNumber.getText().equals("Optional")){
+                profile.setVehicle_identifier_number("");
+            }
+            else{
+                profile.setVehicle_identifier_number(txtVehicleIdentifierNumber.getText());
+            }
+            
+            if(txtDeviceIdentifier.getText().equals("Optional")){
+                profile.setDevice_identifier("");
+            }
+            else{
+                profile.setDevice_identifier(txtDeviceIdentifier.getText());
+            }
+            
             profile.setLinkedin(txtLinkedin.getText());
             profile.setIp_address(txtIPAddress.getText());
             profile.setPhoto(txtFilePath.getText());
+            
             JOptionPane.showMessageDialog(this, "Profile Saved Successfully!");
         }        
         
@@ -604,11 +654,11 @@ public class CreateJPanel extends javax.swing.JPanel {
         if(bankAccountNumber.matches("^[0-9]*$"))
         {
             txtBankAccountNumber.setBackground(Color.green);
-            this.isSubmit = true;
+            this.isSubmit_BankAccountNumber = true;
         }
         else
             txtBankAccountNumber.setBackground(Color.red);
-            this.isSubmit = false;
+            this.isSubmit_BankAccountNumber = false;
     }//GEN-LAST:event_txtBankAccountNumberKeyReleased
 
     private void txtLicenseNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLicenseNumberKeyReleased
@@ -617,11 +667,11 @@ public class CreateJPanel extends javax.swing.JPanel {
         if(LicenseNumber.matches("^[0-9]*$") && LicenseNumber.length() == 9)
         {
             txtLicenseNumber.setBackground(Color.green);
-            this.isSubmit = true;
+            this.isSubmit_LicenseNumber = true;
         }
         else
             txtLicenseNumber.setBackground(Color.red);
-            this.isSubmit = false;
+            this.isSubmit_LicenseNumber = false;
         
     }//GEN-LAST:event_txtLicenseNumberKeyReleased
 
@@ -648,6 +698,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         im = im.getScaledInstance(txtViewPhoto.getWidth(), txtViewPhoto.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon ii = new ImageIcon(im);
         txtViewPhoto.setIcon(ii);
+        this.isSubmit_Photo = true;
         
         
         
@@ -669,6 +720,85 @@ public class CreateJPanel extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_txtNameKeyReleased
+
+    private void txtVehicleIdentifierNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVehicleIdentifierNumberFocusGained
+        // TODO add your handling code here:
+        if(txtVehicleIdentifierNumber.getText().equals("Optional")){
+            txtVehicleIdentifierNumber.setText("");
+            txtVehicleIdentifierNumber.setForeground(new Color(153,153,153));
+        }
+        
+    }//GEN-LAST:event_txtVehicleIdentifierNumberFocusGained
+
+    private void txtDeviceIdentifierFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDeviceIdentifierFocusGained
+        // TODO add your handling code here:
+        if(txtDeviceIdentifier.getText().equals("Optional")){
+            txtDeviceIdentifier.setText("");
+            txtDeviceIdentifier.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtDeviceIdentifierFocusGained
+
+    private void txtAddressKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAddressKeyReleased
+        // TODO add your handling code here:
+        String Address = txtAddress.getText();
+        txtAddress.setBackground(Color.red);
+        if(Address.isEmpty())
+        {
+            txtAddress.setBackground(Color.red);
+            this.isSubmit_Address = false;
+        }
+        else{
+            txtAddress.setBackground(Color.green);
+            this.isSubmit_Address = true;
+        }
+        
+    }//GEN-LAST:event_txtAddressKeyReleased
+
+    private void txtVehicleIdentifierNumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVehicleIdentifierNumberFocusLost
+        // TODO add your handling code here:
+        if(txtVehicleIdentifierNumber.getText().equals("")){
+            txtVehicleIdentifierNumber.setText("Optional");
+            txtVehicleIdentifierNumber.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtVehicleIdentifierNumberFocusLost
+
+    private void txtDeviceIdentifierFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDeviceIdentifierFocusLost
+        // TODO add your handling code here:
+        if(txtDeviceIdentifier.getText().equals("")){
+            txtDeviceIdentifier.setText("Optional");
+            txtDeviceIdentifier.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtDeviceIdentifierFocusLost
+
+    private void txtEmailAddressKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailAddressKeyReleased
+        // TODO add your handling code here:
+        String Email = txtEmailAddress.getText();
+        
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        if(pattern.matcher(Email).matches()){
+            txtEmailAddress.setBackground(Color.green);
+            this.isSubmit_EmailAddress = true;
+        }
+        else{
+            txtEmailAddress.setBackground(Color.red);
+            this.isSubmit_EmailAddress = false;        
+        }
+    }//GEN-LAST:event_txtEmailAddressKeyReleased
+
+    private void txtLinkedinKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLinkedinKeyReleased
+        // TODO add your handling code here:
+        String LinkedinURL = txtLinkedin.getText();
+        
+        try {
+            new URL(LinkedinURL).toURI();
+            txtLinkedin.setBackground(Color.green);
+            this.isSubmit_LinkedinURL = true;
+        } catch (MalformedURLException | URISyntaxException ex) {
+            txtLinkedin.setBackground(Color.red);
+            this.isSubmit_LinkedinURL = false;  
+        }
+    }//GEN-LAST:event_txtLinkedinKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
