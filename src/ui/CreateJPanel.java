@@ -32,6 +32,9 @@ public class CreateJPanel extends javax.swing.JPanel {
     
     Profile profile;
     
+    /**
+     * Defines all the variables used for validation.
+     */
     public boolean isSubmit_Name = false;
     public boolean isSubmit_Address = false;
     public boolean isSubmit_DOB = false;
@@ -504,7 +507,10 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:    
-
+            /**
+            * Code to save the profile and do all the validations.
+            */
+        
         if(this.isSubmit_Name == false ){
             JOptionPane.showMessageDialog(this, "Please enter a valid name.");
         }
@@ -542,15 +548,13 @@ public class CreateJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter a valid photo.");
         }
         else{   
+            
+                /**
+                * Sets all the variable values to the profile package
+                */
             profile.setName(txtName.getText());
-            profile.setAddress(txtAddress.getText());
-//            Date date_today = new Date();
-//            if (txtDOB.getDate() == null){
-//                profile.setDate_of_birth(date_today);
-//            }
-//            else{                
+            profile.setAddress(txtAddress.getText());           
             profile.setDate_of_birth(txtDOB.getDate());
-//            }
             profile.setTelephone_number(txtTelephoneNumber.getText());
             profile.setFax_number(txtFaxNumber.getText());
             profile.setEmail_address(txtEmailAddress.getText());
@@ -559,6 +563,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             profile.setBank_account_number(txtBankAccountNumber.getText());
             profile.setLicense_number(txtLicenseNumber.getText());
             
+            // Placeholder for Vehicle Identifier number.
             if(txtVehicleIdentifierNumber.getText().equals("Optional")){
                 profile.setVehicle_identifier_number("");
             }
@@ -566,6 +571,7 @@ public class CreateJPanel extends javax.swing.JPanel {
                 profile.setVehicle_identifier_number(txtVehicleIdentifierNumber.getText());
             }
             
+            // Placeholder for Device Identifier.
             if(txtDeviceIdentifier.getText().equals("Optional")){
                 profile.setDevice_identifier("");
             }
@@ -585,12 +591,15 @@ public class CreateJPanel extends javax.swing.JPanel {
     private void txtTelephoneNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelephoneNumberKeyReleased
         // TODO add your handling code here:
         String telephoneNumber = txtTelephoneNumber.getText();
+//      Telephone number should be 10 digits long and only consist of numbers.
         if(telephoneNumber.matches("^[0-9]*$") && telephoneNumber.length() == 10)
         {
+//            Change background colour and set the boolean variable as true.
             txtTelephoneNumber.setBackground(Color.green);
             this.isSubmit_telephoneNumber = true;
         }
         else{
+//            Change background colour and set the boolean variable as false.
             txtTelephoneNumber.setBackground(Color.red);
             this.isSubmit_telephoneNumber = false;
         }
@@ -599,12 +608,15 @@ public class CreateJPanel extends javax.swing.JPanel {
     private void txtFaxNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFaxNumberKeyReleased
         // TODO add your handling code here:
         String faxNumber = txtFaxNumber.getText();
+//      Telephone number should be 9 digits long and only consist of numbers.
         if(faxNumber.matches("^[0-9]*$") && faxNumber.length() == 9)
         {
+//            Change background colour and set the boolean variable as true.
             txtFaxNumber.setBackground(Color.green);
             this.isSubmit_FaxNumber = true;
         }
         else{
+//            Change background colour and set the boolean variable as false.
             txtFaxNumber.setBackground(Color.red);
             this.isSubmit_FaxNumber = false;
         }
@@ -613,12 +625,15 @@ public class CreateJPanel extends javax.swing.JPanel {
     private void txtSSNKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSSNKeyReleased
         // TODO add your handling code here:
         String ssnNumber = txtSSN.getText();
+//      Telephone number should be 9 digits long and only consist of numbers.
         if(ssnNumber.matches("^[0-9]*$") && ssnNumber.length() == 9)
         {
+//            Change background colour and set the boolean variable as true.
             txtSSN.setBackground(Color.green);
             isSubmit_SSN = true;
         }
         else{
+//            Change background colour and set the boolean variable as false
             txtSSN.setBackground(Color.red);
             isSubmit_SSN = false;
         }
@@ -627,12 +642,15 @@ public class CreateJPanel extends javax.swing.JPanel {
     private void txtMedicalRecordNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMedicalRecordNumberKeyReleased
         // TODO add your handling code here:
         String medicalRecordNumber = txtMedicalRecordNumber.getText();
+//      Medical Record number should be 10 digits long and only consist of numbers.
         if(medicalRecordNumber.matches("^[0-9]*$"))
         {
+//            Change background colour and set the boolean variable as true.
             txtMedicalRecordNumber.setBackground(Color.green);
             this.isSubmit_MedicalRecordNumber = true;
         }
         else{
+//            Change background colour and set the boolean variable as false
             txtMedicalRecordNumber.setBackground(Color.red);
             this.isSubmit_MedicalRecordNumber = false;
         }
@@ -641,12 +659,18 @@ public class CreateJPanel extends javax.swing.JPanel {
     private void txtBankAccountNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBankAccountNumberKeyReleased
         // TODO add your handling code here:
         String bankAccountNumber = txtBankAccountNumber.getText();
+        /*
+        Bank Account number should be greater than 10 digits long and 
+        less than 20 digits long for simplicity and only consist of numbers.
+        */
         if(bankAccountNumber.matches("^[0-9]*$") && bankAccountNumber.length() >= 10 && bankAccountNumber.length() <= 20)
         {
+//            Change background colour and set the boolean variable as true.
             txtBankAccountNumber.setBackground(Color.green);
             this.isSubmit_BankAccountNumber = true;
         }
         else{
+//            Change background colour and set the boolean variable as false
             txtBankAccountNumber.setBackground(Color.red);
             this.isSubmit_BankAccountNumber = false;
         }
@@ -655,12 +679,15 @@ public class CreateJPanel extends javax.swing.JPanel {
     private void txtLicenseNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLicenseNumberKeyReleased
         // TODO add your handling code here:
         String LicenseNumber = txtLicenseNumber.getText();
+//      License number should be 9 digits long and only consist of numbers.
         if(LicenseNumber.matches("^[0-9]*$") && LicenseNumber.length() == 9)
         {
+//          Change background colour and set the boolean variable as true.
             txtLicenseNumber.setBackground(Color.green);
             this.isSubmit_LicenseNumber = true;
         }
         else{
+//          Change background colour and set the boolean variable as false.
             txtLicenseNumber.setBackground(Color.red);
             this.isSubmit_LicenseNumber = false;
         }
@@ -668,7 +695,8 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void txtIPAddressKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIPAddressKeyReleased
         // TODO add your handling code here:
-        String IPAddress = txtIPAddress.getText();        
+        String IPAddress = txtIPAddress.getText();
+//      REGEX for IPV4        
         String IPV4_REGEX =
                     "^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\." +
                     "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\." +
@@ -677,10 +705,12 @@ public class CreateJPanel extends javax.swing.JPanel {
         Pattern IPv4_PATTERN = Pattern.compile(IPV4_REGEX);
         Matcher matcher = IPv4_PATTERN.matcher(IPAddress);
         if (matcher.matches()) {
+//          Change background colour and set the boolean variable as true.
             txtIPAddress.setBackground(Color.green);
             this.isSubmit_IPAddress = true;
         }
         else {
+//          Change background colour and set the boolean variable as false
             txtIPAddress.setBackground(Color.red);
             this.isSubmit_IPAddress = false;
         }
@@ -691,6 +721,8 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void btnAttachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttachActionPerformed
         // TODO add your handling code here:
+        
+//      FileChooser while helps us to choose a file.  
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
@@ -698,32 +730,41 @@ public class CreateJPanel extends javax.swing.JPanel {
         chooser.addChoosableFileFilter(imageFilter);
         chooser.setAcceptAllFileFilterUsed(false);
 
+//      Choose the selected file.
         File f = chooser.getSelectedFile();
+
+//      Get path of file and store it in filename variable.
         String filename = f.getAbsolutePath();
         txtFilePath.setText(filename);
         
+//      Toolkit package to create an image.
         Image im = Toolkit.getDefaultToolkit().createImage(filename);
         im = im.getScaledInstance(txtViewPhoto.getWidth(), txtViewPhoto.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon ii = new ImageIcon(im);
+        
+//      Display image on the JLabel.
         txtViewPhoto.setIcon(ii);
         this.isSubmit_Photo = true;
-        
-        
-        
         
     }//GEN-LAST:event_btnAttachActionPerformed
 
     private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
         // TODO add your handling code here:
         String Name = txtName.getText();
+        /*
+            REGEX created for Name which consists of First Name and/or Middle Name and/or Last Name.
+            First Name has to be minimum 2 characters and Last name has to be minimum 1 character.
+        */
         String nameRegex = "^([a-zA-Z]{2,}\\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)";
         Pattern pattern = Pattern.compile(nameRegex);
         if(pattern.matcher(Name).matches())
         {
+//          Change background colour and set the boolean variable as true.
             txtName.setBackground(Color.green);
             this.isSubmit_Name = true;
         }
         else{
+//          Change background colour and set the boolean variable as false
             txtName.setBackground(Color.red);
             this.isSubmit_Name = false;
         }
@@ -732,6 +773,8 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void txtVehicleIdentifierNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVehicleIdentifierNumberFocusGained
         // TODO add your handling code here:
+        
+//      Placeholder for VehicleIdentifierName, If we click on Optional the text should go away.
         if(txtVehicleIdentifierNumber.getText().equals("Optional")){
             txtVehicleIdentifierNumber.setText("");
             txtVehicleIdentifierNumber.setForeground(new Color(0,0,0));
@@ -741,6 +784,8 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void txtDeviceIdentifierFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDeviceIdentifierFocusGained
         // TODO add your handling code here:
+        
+//      Placeholder for txtDeviceIdentifier, If we click on Optional the text should go away.
         if(txtDeviceIdentifier.getText().equals("Optional")){
             txtDeviceIdentifier.setText("");
             txtDeviceIdentifier.setForeground(new Color(0,0,0));
@@ -749,16 +794,23 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void txtAddressKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAddressKeyReleased
         // TODO add your handling code here:
+
         String Address = txtAddress.getText();
+        
+//      Removing whitespace from address.
         String removed_whitespace_address = Address.replaceAll(" ", "");
+        
+//      REGEX for Address such that it should contain only alphanumeric characters and some other characters.
         String addressRegex = "^[a-zA-Z0-9\\s,'-]*$";
         Pattern pattern = Pattern.compile(addressRegex);
         txtAddress.setBackground(Color.red);
         if(pattern.matcher(Address).matches() && removed_whitespace_address.length() >= 4){
+//          Change background colour and set the boolean variable as true.
             txtAddress.setBackground(Color.green);
             this.isSubmit_Address = true;
         }
         else{
+//          Change background colour and set the boolean variable as false
             txtAddress.setBackground(Color.red);
             this.isSubmit_Address = false;
         }
@@ -767,6 +819,8 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void txtVehicleIdentifierNumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVehicleIdentifierNumberFocusLost
         // TODO add your handling code here:
+        
+//      Placeholder for txtVehicleIdentifier, If there is no text then Optional should display.
         if(txtVehicleIdentifierNumber.getText().equals("")){
             txtVehicleIdentifierNumber.setText("Optional");
             txtVehicleIdentifierNumber.setForeground(new Color(153,153,153));
@@ -775,6 +829,8 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void txtDeviceIdentifierFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDeviceIdentifierFocusLost
         // TODO add your handling code here:
+        
+//      Placeholder for txtDeviceIdentifier, If there is no text then Optional should display.
         if(txtDeviceIdentifier.getText().equals("")){
             txtDeviceIdentifier.setText("Optional");
             txtDeviceIdentifier.setForeground(new Color(153,153,153));
@@ -785,13 +841,16 @@ public class CreateJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String Email = txtEmailAddress.getText();
         
+//      REGEX to evaluate email address.
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         Pattern pattern = Pattern.compile(emailRegex);
         if(pattern.matcher(Email).matches()){
+//          Change background colour and set the boolean variable as true.
             txtEmailAddress.setBackground(Color.green);
             this.isSubmit_EmailAddress = true;
         }
         else{
+//          Change background colour and set the boolean variable as false
             txtEmailAddress.setBackground(Color.red);
             this.isSubmit_EmailAddress = false;        
         }
@@ -800,12 +859,15 @@ public class CreateJPanel extends javax.swing.JPanel {
     private void txtLinkedinKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLinkedinKeyReleased
         // TODO add your handling code here:
         String LinkedinURL = txtLinkedin.getText();
+//      REGEX for LinkedIn URL.
         String linkedinRegex = "((https?:\\/\\/)?((www|\\w\\w)\\.)?linkedin\\.com\\/)((([\\w]{2,3})?)|([^\\/]+\\/(([\\w|\\d-&#?=])+\\/?){1,}))$";
         Pattern pattern = Pattern.compile(linkedinRegex);
         if(pattern.matcher(LinkedinURL).matches()){
+//          Change background colour and set the boolean variable as true.
             txtLinkedin.setBackground(Color.green);
             this.isSubmit_LinkedinURL = true;
         } else{
+//          Change background colour and set the boolean variable as false
             txtLinkedin.setBackground(Color.red);
             this.isSubmit_LinkedinURL = false;  
         }
