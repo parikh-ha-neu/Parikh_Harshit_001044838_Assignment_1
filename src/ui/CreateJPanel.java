@@ -555,13 +555,13 @@ public class CreateJPanel extends javax.swing.JPanel {
             profile.setName(txtName.getText());
             profile.setAddress(txtAddress.getText());           
             profile.setDate_of_birth(txtDOB.getDate());
-            profile.setTelephone_number(txtTelephoneNumber.getText());
-            profile.setFax_number(txtFaxNumber.getText());
+            profile.setTelephone_number(Long.parseLong(txtTelephoneNumber.getText()));
+            profile.setFax_number(Long.parseLong(txtFaxNumber.getText()));
             profile.setEmail_address(txtEmailAddress.getText());
-            profile.setSsn(txtSSN.getText());
-            profile.setMedical_record_number(txtMedicalRecordNumber.getText());
-            profile.setBank_account_number(txtBankAccountNumber.getText());
-            profile.setLicense_number(txtLicenseNumber.getText());
+            profile.setSsn(Long.parseLong(txtSSN.getText()));
+            profile.setMedical_record_number(Long.parseLong(txtMedicalRecordNumber.getText()));
+            profile.setBank_account_number(Long.parseLong(txtBankAccountNumber.getText()));
+            profile.setLicense_number(Long.parseLong(txtLicenseNumber.getText()));
             
             // Placeholder for Vehicle Identifier number.
             if(txtVehicleIdentifierNumber.getText().equals("Optional")){
@@ -660,10 +660,10 @@ public class CreateJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String bankAccountNumber = txtBankAccountNumber.getText();
         /*
-        Bank Account number should be greater than 10 digits long and 
-        less than 20 digits long for simplicity and only consist of numbers.
+        Bank Account number should be greater than or equal to 10 digits long and 
+        less than 18 digits long for simplicity and only consist of numbers.
         */
-        if(bankAccountNumber.matches("^[0-9]*$") && bankAccountNumber.length() >= 10 && bankAccountNumber.length() <= 20)
+        if(bankAccountNumber.matches("^[0-9]*$") && bankAccountNumber.length() >= 10 && bankAccountNumber.length() <= 17)
         {
 //            Change background colour and set the boolean variable as true.
             txtBankAccountNumber.setBackground(Color.green);

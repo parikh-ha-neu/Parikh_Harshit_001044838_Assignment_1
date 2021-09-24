@@ -14,14 +14,14 @@ import java.util.Date;
 public class Profile {
     public String name;
     public String address;
-    Date date_of_birth = new Date();
-    public String telephone_number;
-    public String fax_number;
+    public Date date_of_birth = new Date();
+    public long telephone_number;
+    public long fax_number;
     public String email_address;
-    public String ssn;
-    public String medical_record_number;
-    public String bank_account_number;
-    public String license_number;
+    public long ssn;
+    public long medical_record_number;
+    public long bank_account_number;
+    public long license_number;
     public String vehicle_identifier_number;
     public String device_identifier;
     public String linkedin;
@@ -60,19 +60,19 @@ public class Profile {
         this.address = address;
     }
 
-    public String getTelephone_number() {
+    public long getTelephone_number() {
         return telephone_number;
     }
 
-    public void setTelephone_number(String telephone_number) {
+    public void setTelephone_number(long telephone_number) {
         this.telephone_number = telephone_number;
     }
 
-    public String getFax_number() {
+    public long getFax_number() {
         return fax_number;
     }
 
-    public void setFax_number(String fax_number) {
+    public void setFax_number(long fax_number) {
         this.fax_number = fax_number;
     }
 
@@ -84,35 +84,35 @@ public class Profile {
         this.email_address = email_address;
     }
 
-    public String getSsn() {
+    public long getSsn() {
         return ssn;
     }
 
-    public void setSsn(String ssn) {
+    public void setSsn(long ssn) {
         this.ssn = ssn;
     }
 
-    public String getMedical_record_number() {
+    public long getMedical_record_number() {
         return medical_record_number;
     }
 
-    public void setMedical_record_number(String medical_record_number) {
+    public void setMedical_record_number(long medical_record_number) {
         this.medical_record_number = medical_record_number;
     }
 
-    public String getBank_account_number() {
+    public long getBank_account_number() {
         return bank_account_number;
     }
 
-    public void setBank_account_number(String bank_account_number) {
+    public void setBank_account_number(long bank_account_number) {
         this.bank_account_number = bank_account_number;
     }
 
-    public String getLicense_number() {
+    public long getLicense_number() {
         return license_number;
     }
 
-    public void setLicense_number(String license_number) {
+    public void setLicense_number(long license_number) {
         this.license_number = license_number;
     }
 
