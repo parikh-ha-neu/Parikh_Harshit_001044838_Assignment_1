@@ -14,7 +14,7 @@ import java.util.Date;
 public class Profile {
     public String name;
     public String address;
-    public Date date_of_birth = new Date();
+    public Date date_of_birth = new Date(0);
     public long telephone_number;
     public long fax_number;
     public String email_address;

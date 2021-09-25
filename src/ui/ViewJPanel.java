@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import model.Profile;
 
@@ -470,7 +471,13 @@ public class ViewJPanel extends javax.swing.JPanel {
         
         txtName.setText(profile.getName());
         txtAddress.setText(profile.getAddress());
-        txtDOB.setText(date_string);
+        
+        if (profile.getDate_of_birth().compareTo(new Date(0)) == 0){
+            txtDOB.setText("");
+        }
+        else{
+            txtDOB.setText(date_string);
+        }
         
         if (profile.getTelephone_number() == 0){
             txtTelephoneNumber.setText("");
