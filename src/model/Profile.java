@@ -27,6 +27,15 @@ public class Profile {
     public String linkedin;
     public String ip_address;
     public String photo;
+    public String fingerprint;
+
+    public String getFingerprint() {
+        return fingerprint;
+    }
+
+    public void setFingerprint(String fingerprint) {
+        this.fingerprint = fingerprint;
+    }
 
     public String getPhoto() {
         return photo;

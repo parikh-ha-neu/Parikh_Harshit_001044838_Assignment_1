@@ -46,8 +46,10 @@ public class CreateJPanel extends javax.swing.JPanel {
     public boolean isSubmit_BankAccountNumber = false;
     public boolean isSubmit_LicenseNumber = false;
     public boolean isSubmit_LinkedinURL = false;
+    public boolean isSubmit_VehicleIdentifierNumber = false;
     public boolean isSubmit_IPAddress = false;
     public boolean isSubmit_Photo = false;
+    public boolean isSubmit_Fingerprint = false;
     
     
     
@@ -101,6 +103,10 @@ public class CreateJPanel extends javax.swing.JPanel {
         btnAttach = new javax.swing.JButton();
         txtFilePath = new javax.swing.JTextField();
         txtViewPhoto = new javax.swing.JLabel();
+        lblFingerprint = new javax.swing.JLabel();
+        btnAttachFingerprint = new javax.swing.JButton();
+        txtFilePathFingerprint = new javax.swing.JTextField();
+        txtViewFingerprint = new javax.swing.JLabel();
 
         lb1Title.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lb1Title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -266,6 +272,11 @@ public class CreateJPanel extends javax.swing.JPanel {
                 txtVehicleIdentifierNumberActionPerformed(evt);
             }
         });
+        txtVehicleIdentifierNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtVehicleIdentifierNumberKeyReleased(evt);
+            }
+        });
 
         txtDeviceIdentifier.setForeground(new java.awt.Color(153, 153, 153));
         txtDeviceIdentifier.setText("Optional");
@@ -305,7 +316,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnSave.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSave.setText("SAVE");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,6 +333,22 @@ public class CreateJPanel extends javax.swing.JPanel {
                 btnAttachActionPerformed(evt);
             }
         });
+
+        txtViewPhoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtViewPhoto.setText("Your uploaded photo will display here.");
+
+        lblFingerprint.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblFingerprint.setText("Upload Fingerprint:");
+
+        btnAttachFingerprint.setText("Browse...");
+        btnAttachFingerprint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAttachFingerprintActionPerformed(evt);
+            }
+        });
+
+        txtViewFingerprint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtViewFingerprint.setText("Your uploaded fingerprint will display here.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -345,33 +372,39 @@ public class CreateJPanel extends javax.swing.JPanel {
                     .addComponent(lblIPAddress)
                     .addComponent(lblPhoto)
                     .addComponent(lblName)
-                    .addComponent(lblAddress))
+                    .addComponent(lblAddress)
+                    .addComponent(lblFingerprint))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtIPAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(txtLinkedin, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(txtDeviceIdentifier, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(txtVehicleIdentifierNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(txtLicenseNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(txtBankAccountNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(txtMedicalRecordNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(txtSSN, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(txtEmailAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(txtFaxNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(txtTelephoneNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(btnSave)
-                            .addComponent(txtDOB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAttach, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtFilePath, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(txtViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtIPAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                        .addComponent(txtLinkedin, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                        .addComponent(txtDeviceIdentifier, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                        .addComponent(txtVehicleIdentifierNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                        .addComponent(txtLicenseNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                        .addComponent(txtBankAccountNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                        .addComponent(txtMedicalRecordNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                        .addComponent(txtSSN, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                        .addComponent(txtEmailAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                        .addComponent(txtFaxNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                        .addComponent(txtTelephoneNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                        .addComponent(btnSave)
+                        .addComponent(txtDOB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnAttach, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtFilePath, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(161, Short.MAX_VALUE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAttachFingerprint, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFilePathFingerprint, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtViewFingerprint, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,17 +412,16 @@ public class CreateJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(lb1Title, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblDateOfBirth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -423,32 +455,42 @@ public class CreateJPanel extends javax.swing.JPanel {
                                     .addComponent(txtLicenseNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTelephoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblVehicleIdentifierNumber)
-                    .addComponent(txtVehicleIdentifierNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDeviceIdentifier)
-                    .addComponent(txtDeviceIdentifier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblLinkedin)
-                    .addComponent(txtLinkedin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblIPAddress)
-                    .addComponent(txtIPAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPhoto)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAttach, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtFilePath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtTelephoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblVehicleIdentifierNumber)
+                            .addComponent(txtVehicleIdentifierNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblDeviceIdentifier)
+                            .addComponent(txtDeviceIdentifier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblLinkedin)
+                            .addComponent(txtLinkedin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblIPAddress)
+                            .addComponent(txtIPAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPhoto)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnAttach, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtFilePath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblFingerprint)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnAttachFingerprint, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtFilePathFingerprint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtViewFingerprint, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(btnSave)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -547,6 +589,9 @@ public class CreateJPanel extends javax.swing.JPanel {
         else if(this.isSubmit_Photo == false ){
             JOptionPane.showMessageDialog(this, "Please enter a valid photo.");
         }
+        else if(this.isSubmit_Fingerprint == false ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid fingerprint.");
+        }
         else{   
             
                 /**
@@ -582,6 +627,8 @@ public class CreateJPanel extends javax.swing.JPanel {
             profile.setLinkedin(txtLinkedin.getText());
             profile.setIp_address(txtIPAddress.getText());
             profile.setPhoto(txtFilePath.getText());
+            profile.setFingerprint(txtFilePathFingerprint.getText());
+
             
             JOptionPane.showMessageDialog(this, "Profile Saved Successfully!");
         }        
@@ -724,27 +771,42 @@ public class CreateJPanel extends javax.swing.JPanel {
         
 //      FileChooser while helps us to choose a file.  
         JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(null);
-        FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
-        //Attaching Filter to JFileChooser object
-        chooser.addChoosableFileFilter(imageFilter);
-        chooser.setAcceptAllFileFilterUsed(false);
+        int response = chooser.showOpenDialog(null);
+        if (response == JFileChooser.APPROVE_OPTION){
+            FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
+    //      Attaching Filter to JFileChooser object
+            chooser.addChoosableFileFilter(imageFilter);
+            chooser.setAcceptAllFileFilterUsed(false);
 
-//      Choose the selected file.
-        File f = chooser.getSelectedFile();
+    //      Choose the selected file.
+            File f = chooser.getSelectedFile();
 
-//      Get path of file and store it in filename variable.
-        String filename = f.getAbsolutePath();
-        txtFilePath.setText(filename);
+    //      Get path of file and store it in filename variable.
+            try {
+                String filename = f.getAbsolutePath();
+                txtFilePath.setText(filename);
+                txtFilePath.setBackground(Color.green);
+
+        //      Toolkit package to create an image.
+                Image im = Toolkit.getDefaultToolkit().createImage(filename);
+                im = im.getScaledInstance(txtViewPhoto.getWidth(), txtViewPhoto.getHeight(), Image.SCALE_SMOOTH);
+                ImageIcon ii = new ImageIcon(im);
+
+        //      Display image on the JLabel.
+                txtViewPhoto.setIcon(ii);
+                this.isSubmit_Photo = true; 
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Please select a valid image.");
+                
+            }
+            
+                   
+        }
+        else{
+            txtFilePath.setBackground(Color.red);
+            this.isSubmit_Photo = false; 
+        }
         
-//      Toolkit package to create an image.
-        Image im = Toolkit.getDefaultToolkit().createImage(filename);
-        im = im.getScaledInstance(txtViewPhoto.getWidth(), txtViewPhoto.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon ii = new ImageIcon(im);
-        
-//      Display image on the JLabel.
-        txtViewPhoto.setIcon(ii);
-        this.isSubmit_Photo = true;
         
     }//GEN-LAST:event_btnAttachActionPerformed
 
@@ -873,9 +935,50 @@ public class CreateJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtLinkedinKeyReleased
 
+    private void btnAttachFingerprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttachFingerprintActionPerformed
+        // TODO add your handling code here:
+                // TODO add your handling code here:
+        
+//      FileChooser while helps us to choose a file.  
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
+        
+//      Attaching Filter to JFileChooser object
+        chooser.addChoosableFileFilter(imageFilter);
+        chooser.setAcceptAllFileFilterUsed(false);
+
+//      Choose the selected file.
+        File f = chooser.getSelectedFile();
+
+//      Get path of file and store it in filename variable.
+        try {
+            String filename_fingerprint = f.getAbsolutePath();
+            txtFilePathFingerprint.setText(filename_fingerprint);
+
+    //      Toolkit package to create an image.
+            Image im = Toolkit.getDefaultToolkit().createImage(filename_fingerprint);
+            im = im.getScaledInstance(txtViewFingerprint.getWidth(), txtViewFingerprint.getHeight(), Image.SCALE_SMOOTH);
+            ImageIcon ii = new ImageIcon(im);
+
+    //      Display image on the JLabel.
+            txtViewFingerprint.setIcon(ii);
+            txtViewFingerprint.setBackground(Color.green);
+            this.isSubmit_Fingerprint = true;
+        } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Please select a valid fingerprint image.");            
+        }
+
+    }//GEN-LAST:event_btnAttachFingerprintActionPerformed
+
+    private void txtVehicleIdentifierNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVehicleIdentifierNumberKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVehicleIdentifierNumberKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAttach;
+    private javax.swing.JButton btnAttachFingerprint;
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel lb1Title;
     private javax.swing.JLabel lblAddress;
@@ -884,6 +987,7 @@ public class CreateJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblDeviceIdentifier;
     private javax.swing.JLabel lblEmailAddress;
     private javax.swing.JLabel lblFaxNumber;
+    private javax.swing.JLabel lblFingerprint;
     private javax.swing.JLabel lblIPAddress;
     private javax.swing.JLabel lblLicenseNumber;
     private javax.swing.JLabel lblLinkedin;
@@ -900,6 +1004,7 @@ public class CreateJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtEmailAddress;
     private javax.swing.JTextField txtFaxNumber;
     private javax.swing.JTextField txtFilePath;
+    private javax.swing.JTextField txtFilePathFingerprint;
     private javax.swing.JTextField txtIPAddress;
     private javax.swing.JTextField txtLicenseNumber;
     private javax.swing.JTextField txtLinkedin;
@@ -908,6 +1013,7 @@ public class CreateJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtSSN;
     private javax.swing.JTextField txtTelephoneNumber;
     private javax.swing.JTextField txtVehicleIdentifierNumber;
+    private javax.swing.JLabel txtViewFingerprint;
     private javax.swing.JLabel txtViewPhoto;
     // End of variables declaration//GEN-END:variables
 }

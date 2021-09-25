@@ -69,7 +69,10 @@ public class ViewJPanel extends javax.swing.JPanel {
         txtIPAddress = new javax.swing.JTextField();
         lblMedicalRecordNumber = new javax.swing.JLabel();
         lblBankAccountNumber = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         lblViewPhoto = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblViewFingerprint = new javax.swing.JLabel();
 
         lblLicenseNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblLicenseNumber.setText("License Number:");
@@ -201,14 +204,53 @@ public class ViewJPanel extends javax.swing.JPanel {
         lblBankAccountNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblBankAccountNumber.setText("Bank Account Number:");
 
+        lblViewPhoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblViewPhoto.setText("You can view your photo here.");
+        lblViewPhoto.setMaximumSize(new java.awt.Dimension(182, 14));
+        lblViewPhoto.setMinimumSize(new java.awt.Dimension(182, 14));
+        lblViewPhoto.setPreferredSize(new java.awt.Dimension(182, 14));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblViewPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+        );
+
+        lblViewFingerprint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblViewFingerprint.setText("You can view your fingerprint here.");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(lblViewFingerprint, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(lblViewFingerprint, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(511, Short.MAX_VALUE)
-                .addComponent(lblViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
+                .addContainerGap(491, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(102, 102, 102))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -257,10 +299,12 @@ public class ViewJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(lblViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(230, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -383,6 +427,8 @@ public class ViewJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lb1Title;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBankAccountNumber;
@@ -398,6 +444,7 @@ public class ViewJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblSSN;
     private javax.swing.JLabel lblTelephoneNumber;
     private javax.swing.JLabel lblVehicleIdentifierNumber;
+    private javax.swing.JLabel lblViewFingerprint;
     private javax.swing.JLabel lblViewPhoto;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtBankAccountNumber;
@@ -424,26 +471,86 @@ public class ViewJPanel extends javax.swing.JPanel {
         txtName.setText(profile.getName());
         txtAddress.setText(profile.getAddress());
         txtDOB.setText(date_string);
-        txtTelephoneNumber.setText(String.valueOf(profile.getTelephone_number()));
-        txtFaxNumber.setText(String.valueOf(profile.getFax_number()));
-        txtEmailAddress.setText(String.valueOf(profile.getEmail_address()));
-        txtSSN.setText(String.valueOf(profile.getSsn()));
-        txtMedicalRecordNumber.setText(String.valueOf(profile.getMedical_record_number()));
-        txtBankAccountNumber.setText(String.valueOf(profile.getBank_account_number()));
-        txtLicenseNumber.setText(String.valueOf(profile.getLicense_number()));      
+        
+        if (profile.getTelephone_number() == 0){
+            txtTelephoneNumber.setText("");
+        }
+        else {
+            txtTelephoneNumber.setText(String.valueOf(profile.getTelephone_number()));
+        }
+        
+        if (profile.getFax_number()== 0){
+            txtFaxNumber.setText("");
+        }
+        else {
+            txtFaxNumber.setText(String.valueOf(profile.getFax_number()));
+        }
+        
+        txtEmailAddress.setText(profile.getEmail_address());
+        
+        if (profile.getSsn()== 0){
+            txtSSN.setText("");
+        }
+        else {
+            txtSSN.setText(String.valueOf(profile.getSsn()));
+        }
+        
+        if (profile.getMedical_record_number()== 0){
+            txtMedicalRecordNumber.setText("");
+        }
+        else {
+            txtMedicalRecordNumber.setText(String.valueOf(profile.getMedical_record_number()));
+        }
+        
+        if (profile.getBank_account_number()== 0){
+            txtBankAccountNumber.setText("");
+        }
+        else {
+            txtBankAccountNumber.setText(String.valueOf(profile.getBank_account_number()));
+        }
+
+        if (profile.getLicense_number()== 0){
+            txtLicenseNumber.setText("");
+        }
+        else {
+            txtLicenseNumber.setText(String.valueOf(profile.getLicense_number()));
+        }
+            
         txtVehicleIdentifierNumber.setText(profile.getVehicle_identifier_number());
         txtDeviceIdentifier.setText(profile.getDevice_identifier());
         txtLinkedin.setText(profile.getLinkedin());
         txtIPAddress.setText(profile.getIp_address());
         
-        String filename = profile.getPhoto();
-        System.out.println(filename);
+        if(profile.getPhoto() == null){
+            lblViewPhoto.setText("You can view your photo here.");
+        }
+        else{
+            String filename = profile.getPhoto();        
+            Image im = Toolkit.getDefaultToolkit().createImage(filename);
+            im = im.getScaledInstance(210, 210, Image.SCALE_SMOOTH);
+            ImageIcon ii = new ImageIcon(im);
+            lblViewPhoto.setIcon(ii);
+            lblViewPhoto.setText("");
+            
+        }
         
-        Image im = Toolkit.getDefaultToolkit().createImage(filename);
-        im = im.getScaledInstance(1200, 640, Image.SCALE_SMOOTH);
-        ImageIcon ii = new ImageIcon(im);
-        lblViewPhoto.setIcon(ii);
         
+
+        
+        if(profile.getFingerprint() == null){
+            lblViewFingerprint.setText("You can view your fingerprint here.");
+        }
+        else{
+            String filename_fingerprint = profile.getFingerprint();
+            Image im1 = Toolkit.getDefaultToolkit().createImage(filename_fingerprint);
+            im1 = im1.getScaledInstance(210, 210, Image.SCALE_SMOOTH);
+            ImageIcon ii2 = new ImageIcon(im1);
+            lblViewFingerprint.setIcon(ii2);
+            lblViewFingerprint.setText("");
+        }
+
+        
+
     
     }
 }
