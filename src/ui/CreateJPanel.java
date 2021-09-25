@@ -690,7 +690,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String medicalRecordNumber = txtMedicalRecordNumber.getText();
 //      Medical Record number should be 10 digits long and only consist of numbers.
-        if(medicalRecordNumber.matches("^[0-9]*$"))
+        if(medicalRecordNumber.matches("^[a-zA-Z0-9]+$") && medicalRecordNumber.length() > 0)
         {
 //            Change background colour and set the boolean variable as true.
             txtMedicalRecordNumber.setBackground(Color.green);
@@ -797,14 +797,12 @@ public class CreateJPanel extends javax.swing.JPanel {
                 this.isSubmit_Photo = true; 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Please select a valid image.");
-                
-            }
-            
-                   
+            }   
         }
         else{
-            txtFilePath.setBackground(Color.red);
+            txtFilePath.setBackground(Color.white);
             this.isSubmit_Photo = false; 
+            txtFilePath.setText("");
         }
         
         
@@ -941,32 +939,40 @@ public class CreateJPanel extends javax.swing.JPanel {
         
 //      FileChooser while helps us to choose a file.  
         JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(null);
-        FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
-        
-//      Attaching Filter to JFileChooser object
-        chooser.addChoosableFileFilter(imageFilter);
-        chooser.setAcceptAllFileFilterUsed(false);
+        int response = chooser.showOpenDialog(null);
+        if (response == JFileChooser.APPROVE_OPTION){
+            chooser.showOpenDialog(null);
+            FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
 
-//      Choose the selected file.
-        File f = chooser.getSelectedFile();
+    //      Attaching Filter to JFileChooser object
+            chooser.addChoosableFileFilter(imageFilter);
+            chooser.setAcceptAllFileFilterUsed(false);
 
-//      Get path of file and store it in filename variable.
-        try {
-            String filename_fingerprint = f.getAbsolutePath();
-            txtFilePathFingerprint.setText(filename_fingerprint);
+    //      Choose the selected file.
+            File f = chooser.getSelectedFile();
 
-    //      Toolkit package to create an image.
-            Image im = Toolkit.getDefaultToolkit().createImage(filename_fingerprint);
-            im = im.getScaledInstance(txtViewFingerprint.getWidth(), txtViewFingerprint.getHeight(), Image.SCALE_SMOOTH);
-            ImageIcon ii = new ImageIcon(im);
+    //      Get path of file and store it in filename variable.
+            try {
+                String filename_fingerprint = f.getAbsolutePath();
+                txtFilePathFingerprint.setText(filename_fingerprint);
 
-    //      Display image on the JLabel.
-            txtViewFingerprint.setIcon(ii);
-            txtViewFingerprint.setBackground(Color.green);
-            this.isSubmit_Fingerprint = true;
-        } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Please select a valid fingerprint image.");            
+        //      Toolkit package to create an image.
+                Image im = Toolkit.getDefaultToolkit().createImage(filename_fingerprint);
+                im = im.getScaledInstance(txtViewFingerprint.getWidth(), txtViewFingerprint.getHeight(), Image.SCALE_SMOOTH);
+                ImageIcon ii = new ImageIcon(im);
+
+        //      Display image on the JLabel.
+                txtViewFingerprint.setIcon(ii);
+                txtViewFingerprint.setBackground(Color.green);
+                this.isSubmit_Fingerprint = true;
+            } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Please select a valid fingerprint image.");            
+            }
+        }
+        else{
+            this.isSubmit_Photo = false; 
+            txtViewFingerprint.setBackground(Color.white);
+            txtFilePath.setText("");
         }
 
     }//GEN-LAST:event_btnAttachFingerprintActionPerformed
