@@ -532,8 +532,8 @@ public class ViewJPanel extends javax.swing.JPanel {
             lblViewPhoto.setText("You can view your photo here.");
         }
         else{
-            String filename = profile.getPhoto();        
-            Image im = Toolkit.getDefaultToolkit().createImage(filename);
+            String filename_photo = profile.getPhoto();        
+            Image im = Toolkit.getDefaultToolkit().createImage(filename_photo);
             im = im.getScaledInstance(210, 210, Image.SCALE_SMOOTH);
             ImageIcon ii = new ImageIcon(im);
             lblViewPhoto.setIcon(ii);
@@ -549,10 +549,10 @@ public class ViewJPanel extends javax.swing.JPanel {
         }
         else{
             String filename_fingerprint = profile.getFingerprint();
-            Image im1 = Toolkit.getDefaultToolkit().createImage(filename_fingerprint);
-            im1 = im1.getScaledInstance(210, 210, Image.SCALE_SMOOTH);
-            ImageIcon ii2 = new ImageIcon(im1);
-            lblViewFingerprint.setIcon(ii2);
+            Image im_fingerprint = Toolkit.getDefaultToolkit().createImage(filename_fingerprint);
+            im_fingerprint = im_fingerprint.getScaledInstance(210, 210, Image.SCALE_SMOOTH);
+            ImageIcon ii_fingerprint = new ImageIcon(im_fingerprint);
+            lblViewFingerprint.setIcon(ii_fingerprint);
             lblViewFingerprint.setText("");
         }
 

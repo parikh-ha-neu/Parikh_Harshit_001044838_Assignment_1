@@ -113,49 +113,49 @@ public class CreateJPanel extends javax.swing.JPanel {
         lb1Title.setText("CREATE PROFILE");
 
         lblName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblName.setText("Full Name:");
+        lblName.setText("Full Name");
 
         lblAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblAddress.setText("Address:");
+        lblAddress.setText("Address");
 
         lblDateOfBirth.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblDateOfBirth.setText("Date of Birth");
 
         lblTelephoneNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblTelephoneNumber.setText("Telephone Number:");
+        lblTelephoneNumber.setText("Telephone Number");
 
         lblFaxNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblFaxNumber.setText("Fax Number: ");
+        lblFaxNumber.setText("Fax Number");
 
         lblEmailAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblEmailAddress.setText("Email Address:");
+        lblEmailAddress.setText("Email Address");
 
         lblSSN.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblSSN.setText("Social Security Number:");
+        lblSSN.setText("Social Security Number");
 
         lblMedicalRecordNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblMedicalRecordNumber.setText("Medical Record Number:");
+        lblMedicalRecordNumber.setText("Medical Record Number");
 
         lblBankAccountNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblBankAccountNumber.setText("Bank Account Number:");
+        lblBankAccountNumber.setText("Bank Account Number");
 
         lblLicenseNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblLicenseNumber.setText("License Number:");
+        lblLicenseNumber.setText("License Number");
 
         lblVehicleIdentifierNumber.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblVehicleIdentifierNumber.setText("Vehicle Identifier Number: ");
+        lblVehicleIdentifierNumber.setText("Vehicle Identifier Number ");
 
         lblDeviceIdentifier.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblDeviceIdentifier.setText("Device Identifier: ");
+        lblDeviceIdentifier.setText("Device Identifier ");
 
         lblLinkedin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblLinkedin.setText("Linkedin URL: ");
+        lblLinkedin.setText("Linkedin URL");
 
         lblIPAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblIPAddress.setText("IP Address:");
+        lblIPAddress.setText("IP Address");
 
         lblPhoto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblPhoto.setText("Upload Photo:");
+        lblPhoto.setText("Upload Photo");
 
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,7 +190,7 @@ public class CreateJPanel extends javax.swing.JPanel {
             }
         });
 
-        txtFaxNumber.setToolTipText("Optional");
+        txtFaxNumber.setToolTipText("");
         txtFaxNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFaxNumberActionPerformed(evt);
@@ -338,7 +338,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         txtViewPhoto.setText("Your uploaded photo will display here.");
 
         lblFingerprint.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblFingerprint.setText("Upload Fingerprint:");
+        lblFingerprint.setText("Upload Fingerprint");
 
         btnAttachFingerprint.setText("Browse...");
         btnAttachFingerprint.addActionListener(new java.awt.event.ActionListener() {
@@ -404,7 +404,7 @@ public class CreateJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtViewPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtViewFingerprint, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
